@@ -50,25 +50,40 @@ app.get("/:customer_id", (req, res) => {
   }
 
   res.send(`
-    <html>
-      <head>
-        <title>Status for ${data.name}</title>
-        <style>
-          body { font-family: Arial; text-align: center; padding: 40px; }
-          h1 { font-size: 28px; }
-          .box { background: #f4f4f4; padding: 20px; display: inline-block; border-radius: 8px; }
-        </style>
-      </head>
-      <body>
-        <div class="box">
-          <h1>Status for ${data.name}</h1>
+  <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <title>Status for ${data.name}</title>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          padding-top: 50px;
+          background-color: #f8f9fa;
+        }
+        .card {
+          max-width: 500px;
+          margin: auto;
+          border-radius: 10px;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <div class="card shadow p-4">
+          <h2 class="mb-4 text-center">Customer Status</h2>
+          <p><strong>Name:</strong> ${data.name}</p>
           <p><strong>Policy Type:</strong> ${data.policy_type}</p>
-          <p><strong>Current Stage:</strong> ${data.stage}</p>
+          <p><strong>Current Stage:</strong> <span class="badge bg-primary">${data.stage}</span></p>
           <p><strong>Last Updated:</strong> ${new Date(data.updated_at).toLocaleString()}</p>
         </div>
-      </body>
+      </div>
+    </body>
     </html>
   `);
+
 });
 
 // Root route
